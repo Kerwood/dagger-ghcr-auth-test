@@ -1,1 +1,0 @@
-# dagger-ghcr-auth-test
