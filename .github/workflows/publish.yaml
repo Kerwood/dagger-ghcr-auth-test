@@ -5,6 +5,7 @@ on:
   pull_request:
 
 permissions:
+  contents: read
   packages: write
 
 jobs:
@@ -17,8 +18,7 @@ jobs:
         name: publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_ACTOR: ${{ github.actor }}
         with:
-          call: publish-image --gh-user env://GH_ACTOR --gh-token env://GH_TOKEN
+          call: publish-image --gh-user ${{ github.actor }} --gh-token env://GH_TOKEN
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
           version: "latest"
