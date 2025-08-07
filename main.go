@@ -28,5 +28,5 @@ func (m *AuthTest) PublishImage(ctx context.Context, ghUser string, ghToken *dag
 		From("alpine:latest").
 		WithLabel("org.opencontainers.image.source", "https://github.com/kerwood/dagger-ghcr-auth-test").
 		WithRegistryAuth("ghcr.io", ghUser, ghToken).
-		Publish(ctx, "ghcr.io/Kerwood/dagger-ghcr-auth-test:latest")
+		Publish(ctx, "ghcr.io/kerwood/dagger-ghcr-auth-test:latest")
 }
