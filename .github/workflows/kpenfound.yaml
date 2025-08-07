@@ -1,0 +1,19 @@
+name: kpenfound
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+
+permissions:
+  packages: write
+
+jobs:
+  release:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dagger/dagger-for-github@8.0.0
+      - run: dagger -c 'container | from alpine | with-registry-auth ghcr.io ${{ github.actor }} env://GH_TOKEN | publish ghcr.io/kerwood/dagger-ghcr-auth-test:latest'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
